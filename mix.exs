@@ -11,21 +11,18 @@ defmodule OpentelemetrySetup.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       mod: {OpentelemetrySetup.Application, []},
-      extra_applications: [:logger, :tls_certificate_check]
+      extra_applications: [:logger]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:opentelemetry_api, "~> 1.0"},
-      {:opentelemetry, "~> 1.0"},
       {:opentelemetry_exporter, "~> 1.0"},
-      {:tls_certificate_check, "~> 1.13"}
+      {:opentelemetry, "~> 1.0"},
+      {:opentelemetry_api, "~> 1.0"}
     ]
   end
 end
