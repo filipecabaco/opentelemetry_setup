@@ -1,4 +1,4 @@
-# Setup Tempo and Elixir to have tracing locally
+# Setup Jaeger and Elixir to have tracing locally
 
 Based on the presentation from https://github.com/kamilkowalski/opentelemetry-demo
 
@@ -42,14 +42,14 @@ And then instrument the areas of the code you want to measure. I suggest that th
 
 You can add more metadata to each trace to the active trace using `OpenTelemetry.Tracer.set_attribute/2` or `OpenTelemetry.Tracer.set_attributes/1`, check https://hexdocs.pm/opentelemetry_api/OpenTelemetry.Tracer.html for more information.
 
-## Setup Grafana and Tempo
-Finally, `docker compose up -d` and access http://localhost:5000 .
+## Setup Jaeger
+Finally, `docker compose up -d` and access http://localhost:16686
 
-You also need to check tempo container logs to get the trace ids received by tempo with `docker logs -f <tempo container name or id>`
+Jaeger was chosen due to the fact that it's contained in a single image with no configuration file but you can check out other services like Tempo from Gragana, Elastic APM from Elastic or OpenZipkin.
 
 ## Demonstration
 In this demo app, try it out by running `iex -S mix` and call `OpentelemetrySetup.Demo.call()`.
 
 In the code you can see that we instrument multiple functions and that we add an attribute to the last span to see what args were received by the function.
 
-![tempo.png](tempo.png)
+![demo.png](demo.png)
