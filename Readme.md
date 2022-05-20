@@ -6,16 +6,25 @@ This is a simple example on how to setup a tracing environment on your Elixir pr
 
 ## What do you need in Elixir?
 
-Add a new application for the SSL certificate checks and add de dependencies in your `mix.exs`. Please do note that dependency order does matter to avoid a tls_certificate_check error.
+Add a new application for the SSL certificate checks and add de dependencies in your `mix.exs`
 
 ```elixir
 #...
+def application do
+    [
+      extra_applications: [
+        # ...
+        :tls_certificate_check
+      ]
+    ]
+end
+#...
 defp deps do
     [
-        # This order matters to avoid a tls_certificate_check
-        {:opentelemetry_exporter, "~> 1.0"},
-        {:opentelemetry, "~> 1.0"},
         {:opentelemetry_api, "~> 1.0"},
+        {:opentelemetry, "~> 1.0"},
+        {:opentelemetry_exporter, "~> 1.0"},
+        {:tls_certificate_check, "~> 1.13"},
     #...
     ]
 end
